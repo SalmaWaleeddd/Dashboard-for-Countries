@@ -1,0 +1,12 @@
+@for ( country of countries(); track country.name ) {
+<div class="country-card">
+    <img [src]="country.flagUrl" [alt]="country.name + ' flag'" width="100" height="60"/>
+    <p >{{country.name}}</p>
+    <p>{{country.region}}</p>
+    <p>{{country.population}}</p>
+    <p> →</p>
+</div>
+}@empty{
+<p>Loading countries...</p>
+}
+
