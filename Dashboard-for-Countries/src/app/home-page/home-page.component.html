@@ -1,8 +1,14 @@
-<app-filter [(searchTerm)]="searchTerm" [(selectedRegion)]="selectedRegion"></app-filter>
-<div class="statistics">
-    <p title="Total Countries">total number of displayed countries: {{filteredCountries().length}}</p>
-    <p title="Total Population">total number of displayed population: {{totalPopulation()}}</p>
-
-
+<div class="container">
+    <app-filter [(searchTerm)]="searchTerm" [(selectedRegion)]="selectedRegion"></app-filter>
+    <div class="statistics">
+        <p title="Total Countries">total number of displayed countries: {{filteredCountries().length}}</p>
+        <p title="Total Population">total number of displayed population: {{totalPopulation()}}</p>
+    </div>
+    @if (countries().length === 0) {
+    <div class="loading">Loading countries...</div>
+    } @else if (filteredCountries().length === 0) {
+    <div class="empty-state">No countries match your search criteria</div>
+    } @else {
+    <app-country-card [countries]="filteredCountries()"></app-country-card>
+    }
 </div>
-<app-country-card [countries]="filteredCountries()"></app-country-card>

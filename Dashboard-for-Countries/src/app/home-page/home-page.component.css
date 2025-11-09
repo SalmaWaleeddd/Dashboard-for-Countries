@@ -1,0 +1,89 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Statistics section */
+.statistics {
+    display: flex;
+    gap: 32px;
+    background: linear-gradient(135deg, #667eea 0%, #64b6ac 100%);
+    color: white;
+    padding: 20px 24px;
+    border-radius: 12px;
+    margin: 24px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.statistics p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+
+/* Loading state */
+.loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+.loading::before {
+    content: "⏳";
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b7280;
+    font-size: 1.1rem;
+    background: #f9fafb;
+    border-radius: 12px;
+    margin: 24px 0;
+    border: 2px dashed #e5e7eb;
+}
+
+.empty-state::before {
+    content: "🌍";
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+
+    .statistics {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}
+
+/* Animation for smooth transitions */
+:host {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
