@@ -1,4 +1,4 @@
-import { Component, effect, model } from '@angular/core';
+import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,16 +12,5 @@ export class FilterComponent {
   searchTerm = model('');
   selectedRegion = model('');
 
-
   regions: string[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
-
-  constructor() {
-    /* effect(() => {
-      console.log('Search Term from filter comp:', this.searchTerm());
-      
-    }); */
-
-
-
-  }
 }

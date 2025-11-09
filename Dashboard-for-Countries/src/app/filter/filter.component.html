@@ -1,7 +1,9 @@
-<input type="text" placeholder="Search by country name" [(ngModel)]="searchTerm" />
-<select [(ngModel)]="selectedRegion">
-    <option value="all">All Regions</option>
-    @for ( region of regions; track region ) {
-    <option [value]="region">{{region}}</option>
-    }
-</select>
+<div class="filter-container">
+    <input type="text" placeholder="Search by country name" [(ngModel)]="searchTerm" />
+    <select [(ngModel)]="selectedRegion">
+        <option value="all">All Regions</option>
+        @for ( region of regions; track region ) {
+        <option [value]="region">{{region}}</option>
+        }
+    </select>
+</div>
