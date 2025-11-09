@@ -28,6 +28,10 @@ export class HomePageComponent {
     );
   });
 
+  totalPopulation = computed(() => 
+    this.filteredCountries().reduce((sum, country) => sum + country.population, 0)
+  );
+
 
   constructor() {
     effect(() => {

@@ -1,2 +1,8 @@
 <app-filter [(searchTerm)]="searchTerm" [(selectedRegion)]="selectedRegion"></app-filter>
+<div class="statistics">
+    <p title="Total Countries">total number of displayed countries: {{filteredCountries().length}}</p>
+    <p title="Total Population">total number of displayed population: {{totalPopulation()}}</p>
+
+
+</div>
 <app-country-card [countries]="filteredCountries()"></app-country-card>
