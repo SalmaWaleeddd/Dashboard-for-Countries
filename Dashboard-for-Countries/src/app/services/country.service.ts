@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiCountry } from '../models/api-country';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -24,7 +25,11 @@ export class CountryService {
         region: country.region,
         population: country.population,
         cca3: country.cca3
-      })))
+      }))),
+      catchError(error => {
+        console.error('Error fetching countries:', error);
+        return []; 
+      })
     );
   }
 }
