@@ -1,9 +1,56 @@
-.country-card{
+.country-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+    border: 1px solid #e1e5e9;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 12px 0;
+    background: white;
+    gap: 16px;
+}
+
+.country-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.country-card img {
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.country-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+    flex: 1;
+    min-width: 150px;
+}
+
+.country-card p {
+    margin: 4px 0;
+    color: #4a5568;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 120px;
+}
+
+
+.country-card button {
+    background: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.country-card button:hover {
+    background: #2c5aa0;
 }
