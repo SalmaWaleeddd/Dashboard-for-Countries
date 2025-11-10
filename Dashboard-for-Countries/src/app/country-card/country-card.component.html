@@ -4,7 +4,7 @@
     <h3>{{country.name}}</h3>
     <p>{{country.region}}</p>
     <p>{{country.population}}</p>
-    <button>→ Details</button>
+    <button (click)="navigateToDetails(country.cca3)">→ Details</button>
 </div>
 }@empty{
 <p>No countries found.</p>
