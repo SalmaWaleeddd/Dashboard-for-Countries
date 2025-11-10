@@ -1,0 +1,47 @@
+@if (country(); as countryData){
+<div class="countryDetail">
+    <h2>{{ countryData.name }}</h2>
+    
+    <div class="flag">
+        <img [src]="countryData.flagUrl" [alt]="countryData.name + ' flag'" />
+    </div>
+    
+    <div class="info">
+        <div class="info-row">
+            <div class="info-label">Official Name:</div>
+            <div class="info-value">{{ countryData.officialName }}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Capital:</div>
+            <div class="info-value">{{ countryData.capital || 'None' }}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Population:</div>
+            <div class="info-value">{{ countryData.population || 'Unknown' }}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Region:</div>
+            <div class="info-value">{{ countryData.region || 'Unknown' }}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Languages:</div>
+            <div class="info-value">{{ formatLanguages(countryData.languages) }}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Currencies:</div>
+            <div class="info-value">{{ formatCurrencies(countryData.currencies) }}</div>
+        </div>
+        <div class="info-row">
+            <div class="border-countries">
+                <div class="border-title">Border Countries</div>
+                <div class="border-list">{{ borderCountries() }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+}@else {
+<div class="error">
+    <h2>Country Not Found</h2>
+    <p>No country found with code: {{ code() }}</p>
+</div>
+}
