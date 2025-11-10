@@ -1,5 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { CountryCard } from '../models/country-card';
+import { Router } from '@angular/router';
 
 
 
@@ -9,12 +10,14 @@ import { CountryCard } from '../models/country-card';
   templateUrl: './country-card.component.html',
   styleUrl: './country-card.component.css'
 })
-export class CountryCardComponent { 
+export class CountryCardComponent {
 
+  private router = inject(Router);
 
-countries=input<CountryCard[]>();
+  countries = input<CountryCard[]>();
 
-
-
+  navigateToDetails(countryCode: string) {
+    this.router.navigate(['country', countryCode]);
+  }
 
 }
