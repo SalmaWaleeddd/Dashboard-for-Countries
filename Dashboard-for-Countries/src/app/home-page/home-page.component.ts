@@ -1,10 +1,11 @@
-import { Component, computed, effect, inject, model } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, computed, inject, model } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 import { FilterComponent } from '../filter/filter.component';
 import { CountryCardComponent } from '../country-card/country-card.component';
 
 import { CountryService } from '../services/country.service';
+import { combineLatest, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -17,28 +18,32 @@ export class HomePageComponent {
 
   searchTerm = model('');
   selectedRegion = model('all');
+  distinctFilters = toSignal(
+    combineLatest([
+      toObservable(this.searchTerm),
+      toObservable(this.selectedRegion)
+    ]).pipe(
+      debounceTime(300),
+      distinctUntilChanged((prev, curr) =>
+        prev[0] === curr[0] && prev[1] === curr[1]
+      )
+    ),
+    { initialValue: ['', 'all'] }
+  );
 
   countries = toSignal(this.countryService.getAllCountries(), { initialValue: [] });
   filteredCountries = computed(() => {
-    const search = this.searchTerm().toLowerCase();
-    
-    return this.countries().filter(country =>
-      country.name.toLowerCase().includes(search) &&
-      (this.selectedRegion() === 'all' || country.region === this.selectedRegion())
-    );
+    const [search, region] = this.distinctFilters();
+    console.log('Filtering with Search:', search, 'Region:', region);
+
+     return this.countries().filter(country =>
+    country.name.toLowerCase().includes(search.toLowerCase()) &&
+    (region === 'all' || country.region === region)
+  );
   });
 
-  totalPopulation = computed(() => 
+  totalPopulation = computed(() =>
     this.filteredCountries().reduce((sum, country) => sum + country.population, 0)
   );
-
-
-  constructor() {
-    effect(() => {
-      console.log(' Countries:', this.countries());
-      console.log('Search Term:', this.searchTerm());
-      console.log('Selected Region:', this.selectedRegion());
-    });
-  }
 
 }
