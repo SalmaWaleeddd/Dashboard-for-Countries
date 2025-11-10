@@ -54,5 +54,9 @@ export class CountryService {
   getCountryByCode(code: string): CountryCard {
     return this.allCountries().find(country => country.cca3 === code)!;
   }
+
+  areCountriesLoaded(): boolean {
+    return this.allCountries().length > 0;
+  }
 }
 
